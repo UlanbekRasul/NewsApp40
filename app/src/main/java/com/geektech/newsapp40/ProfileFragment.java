@@ -18,8 +18,7 @@ import com.bumptech.glide.Glide;
 import com.geektech.newsapp40.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-
-    FragmentProfileBinding binding;
+    private FragmentProfileBinding binding;
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -27,11 +26,9 @@ public class ProfileFragment extends Fragment {
                     Glide.with(binding.imProfile).load(uri).into(binding.imProfile);
                 }
             });
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -47,8 +44,5 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    private void openFragment() {
 
-
-    }
 }
