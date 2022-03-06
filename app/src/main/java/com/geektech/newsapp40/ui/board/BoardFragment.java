@@ -54,15 +54,7 @@ public class BoardFragment extends Fragment {
 
                     @Override
                     public void onLongClick(int position) {
-                        new AlertDialog.Builder(getContext())
-                                .setTitle("удаление")
-                                .setMessage("вы точно хотите удалить?").setNegativeButton("нет", null)
-                                .setPositiveButton("да", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        adapter.delete(position);
-                                    }
-                                }).show();
+
                     }
                 });
             }
@@ -97,5 +89,6 @@ public class BoardFragment extends Fragment {
             }
         });
     }
+
 
 }

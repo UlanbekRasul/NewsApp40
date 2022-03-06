@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,37 +36,28 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications,
-                R.id.profileFragment)
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
-        NavController navController = Navigation.findNavController
-                (this, R.id.nav_host_fragment_activity_main);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
         navController.navigate(R.id.boardFragment);
-        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            List<Integer> tabFragments = new ArrayList<>();
-            tabFragments.add(R.id.navigation_home);
-            tabFragments.add(R.id.navigation_dashboard);
-            tabFragments.add(R.id.navigation_notifications);
-            tabFragments.add(R.id.profileFragment);
 
-            if (tabFragments.contains(destination.getId())) {
-                navView.setVisibility(View.VISIBLE);
-            } else {
-                navView.setVisibility(View.GONE);
+
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
+                if (navDestination.getId() == R.id.boardFragment) {
+                    navView.setVisibility(View.GONE);
+                    getSupportActionBar().hide();
+                } else {
+                    navView.setVisibility(View.VISIBLE);
+                    getSupportActionBar().show();
+                }
             }
-
-            // board/fragment toolbar: hide\show
-            if (destination.getId() == R.id.boardFragment) {
-                getSupportActionBar().hide();
-            } else {
-                getSupportActionBar().show();
-            }
-
-
         });
-
     }
+
 
 }
