@@ -19,7 +19,10 @@ import androidx.navigation.Navigation;
 import com.geektech.newsapp40.NewsAdapter;
 import com.geektech.newsapp40.R;
 import com.geektech.newsapp40.databinding.FragmentHomeBinding;
+import com.geektech.newsapp40.ui.App;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
 
 import models.News;
 
@@ -42,7 +45,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -52,19 +54,19 @@ public class HomeFragment extends Fragment {
                 openFragment();
             }
         });
-
+        binding.recyclerView.setAdapter(adapter);
+        List<News> newsList = App.database.newsDao().getAllNews();
+        adapter.addItems(newsList);
         getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
                 News news = (News) result.getSerializable("news");
                 adapter.addItem(news);
                 Log.e("Home", "text: " + news.getTitle() + news.getCreatedAt());
-                binding.recyclerView.setAdapter(adapter);
+
             }
         });
     }
-
-
 
 
     private void openFragment() {

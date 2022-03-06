@@ -1,14 +1,45 @@
 package models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
-public class News implements Serializable {
-    private String title;
-    private String createdAt;
+@Entity(tableName = "news")
 
-    public News(String title, String createdAt) {
+public class News implements Serializable {
+    @PrimaryKey(autoGenerate = true)
+    int id;
+    @ColumnInfo(name = "title")
+    String title;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ColumnInfo(name = "created_at")
+    String createdAt;
+    @ColumnInfo(name = "description")
+    String description;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public News(String title, String createdAt, String description) {
         this.title = title;
         this.createdAt = createdAt;
+        this.description = description;
     }
 
     public String getTitle() {

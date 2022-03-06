@@ -8,12 +8,21 @@
 
     <ImageView
         android:id="@+id/im_profile"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@color/teal_700"
-        android:layout_height="400dp"/>
+        android:src="@drawable/ic_launcher_background"
+        android:layout_height="200dp"/>
+
+    <EditText
+        android:id="@+id/et_save"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

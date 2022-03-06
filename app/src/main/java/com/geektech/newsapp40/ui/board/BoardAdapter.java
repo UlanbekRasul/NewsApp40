@@ -1,15 +1,23 @@
 package com.geektech.newsapp40.ui.board;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.geektech.newsapp40.R;
+import com.geektech.newsapp40.databinding.FragmentBoardBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +25,8 @@ import java.util.List;
 import models.News;
 
 public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> {
-    private List<News> list=new ArrayList<>();
-    private String[] titles = new String[]{"Салам", "Привет", "Hello"};
-    private String[] texts = new String[]{"Чайдан алыныз", "Угощайтесь", "Help yourself"};
+    private String[] titles = new String[]{"Здравствуйте", "Дальше", "Всё"};
+    private String[] texts = new String[]{"нажмите кнопу\n любую", "ещё раз", "и ещё один раз"};
 
     private OnClickListener listener;
 
@@ -28,33 +35,21 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.ViewHolder> 
     }
 
 
-
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate
-                (R.layout.item_board, parent, false);
+    public BoardAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_board, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BoardAdapter.ViewHolder holder, int position) {
         holder.bind(position);
     }
 
     @Override
     public int getItemCount() {
         return titles.length;
-    }
-
-    public  void addItem(News news) {
-        list.add(news);
-        notifyItemInserted(list.size());
-    }
-    public void delete( int position) {
-        this.list.remove(position);
-        notifyItemRemoved(position);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

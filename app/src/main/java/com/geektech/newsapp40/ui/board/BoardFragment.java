@@ -10,14 +10,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.geektech.newsapp40.R;
 import com.geektech.newsapp40.databinding.FragmentBoardBinding;
+import com.geektech.newsapp40.ui.Prefs;
 
 public class BoardFragment extends Fragment {
 
@@ -48,15 +52,13 @@ public class BoardFragment extends Fragment {
                 adapter.setListener(new OnClickListener() {
                     @Override
                     public void onClick() {
+                        Prefs prefs = new Prefs(requireContext());
+                        prefs.saveBoardState();
                         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
                         navController.navigateUp();
                     }
-
-                    @Override
-                    public void onLongClick(int position) {
-
-                    }
                 });
+
             }
         });
 

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import com.geektech.newsapp40.databinding.FragmentNewsBinding;
 import com.geektech.newsapp40.databinding.ItemNewsBinding;
+import com.geektech.newsapp40.ui.App;
 
 import models.News;
 
@@ -53,10 +54,11 @@ public class NewsFragment extends Fragment {
 
         long created = System.currentTimeMillis();
         ZonedDateTime zonedDateTime = Instant.ofEpochMilli(created).atZone(ZoneId.of("Asia/Bishkek"));
-        String format  = zonedDateTime.format(DateTimeFormatter.ofPattern("HH:mm , dd MMM yyyy"));
-        News news = new News(binding.editText.getText().toString(),format );
+        String format = zonedDateTime.format(DateTimeFormatter.ofPattern("HH:mm , dd MMM yyyy"));
+        News news = new News(binding.editText.getText().toString(), format,  "");
         bundle.putSerializable("news", news);
         getParentFragmentManager().setFragmentResult("rk_news", bundle);
+        App.database.newsDao().insetNews(news);
         close();
     }
 
