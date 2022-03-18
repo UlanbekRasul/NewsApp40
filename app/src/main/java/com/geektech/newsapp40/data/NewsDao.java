@@ -1,5 +1,6 @@
 package com.geektech.newsapp40.data;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,11 +14,11 @@ import models.News;
 @Dao
 public interface NewsDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     void insetNews(News news);
 
-    @Query("SELECT * FROM news")
-    List<News> getAllNews();
+    @Query("SELECT * FROM news ORDER by id DESC")
+    LiveData<List<News>> getAllNews();
 
     @Delete
     void deleteNews(News news);

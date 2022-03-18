@@ -29,7 +29,6 @@ import models.News;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private ArrayList<News> list = new ArrayList<>();
-    private List<News> news;
 
     public void setList(ArrayList<News> list) {
         this.list.addAll(list);
@@ -67,9 +66,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
 
     public void addItems(List<News> newsList){
-        news = newsList;
+        list = (ArrayList<News>) newsList;
         notifyDataSetChanged();
     }
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

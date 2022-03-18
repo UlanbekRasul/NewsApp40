@@ -22,6 +22,7 @@ import com.geektech.newsapp40.databinding.FragmentHomeBinding;
 import com.geektech.newsapp40.ui.App;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Collections;
 import java.util.List;
 
 import models.News;
@@ -55,8 +56,9 @@ public class HomeFragment extends Fragment {
             }
         });
         binding.recyclerView.setAdapter(adapter);
-        List<News> newsList = App.database.newsDao().getAllNews();
-        adapter.addItems(newsList);
+        App.getDatabase().newsDao().getAllNews().observe(getViewLifecycleOwner(), news -> {
+            adapter.addItems(news);
+        });
         getParentFragmentManager().setFragmentResultListener("rk_news", getViewLifecycleOwner(), new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {

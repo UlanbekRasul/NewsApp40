@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/NewsApp40-/app/src/main/res/layout/fragment_board.xml" value="0.15" />
+        <entry key="..\:/NewsApp40-/app/src/main/res/layout/item_board.xml" value="0.19010416666666666" />
         <entry key="..\:/NewsApp40/app/src/main/res/drawable/ic_menu.xml" value="0.2169230769230769" />
         <entry key="..\:/NewsApp40/app/src/main/res/layout/activity_main.xml" value="0.13541666666666666" />
         <entry key="..\:/NewsApp40/app/src/main/res/layout/fragment_board.xml" value="0.20416666666666666" />

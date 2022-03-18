@@ -20,6 +20,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.geektech.newsapp40.databinding.FragmentNewsBinding;
 import com.geektech.newsapp40.databinding.ItemNewsBinding;
 import com.geektech.newsapp40.ui.App;
@@ -43,7 +45,12 @@ public class NewsFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                save();
+                if (binding.editText.getText().toString().isEmpty()){
+                    YoYo.with(Techniques.Bounce).duration(400).repeat(1).playOn(binding.editText);
+                    binding.editText.setError("Пусто");
+                }else {
+                    save();
+                }
             }
         });
     }
@@ -51,7 +58,6 @@ public class NewsFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private void save() {
         Bundle bundle = new Bundle();
-
         long created = System.currentTimeMillis();
         ZonedDateTime zonedDateTime = Instant.ofEpochMilli(created).atZone(ZoneId.of("Asia/Bishkek"));
         String format = zonedDateTime.format(DateTimeFormatter.ofPattern("HH:mm , dd MMM yyyy"));
