@@ -55,7 +55,7 @@ public class BoardFragment extends Fragment {
                         Prefs prefs = new Prefs(requireContext());
                         prefs.saveBoardState();
                         NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                        navController.navigateUp();
+                        navController.navigate(R.id.action_boardFragment_to_registerFragment);
                     }
                 });
 
@@ -87,7 +87,7 @@ public class BoardFragment extends Fragment {
             public void onClick(View view) {
 
                 NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_activity_main);
-                navController.navigateUp();
+                navController.navigate(R.id.action_boardFragment_to_registerFragment);
             }
         });
     }

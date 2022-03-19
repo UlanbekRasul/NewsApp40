@@ -22,15 +22,16 @@
         android:layout_marginTop="64dp"
         android:layout_marginBottom="32dp"
         android:text="Title"
-        android:textSize="28sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textDesc"
+        android:layout_marginHorizontal="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:textSize="28sp" />
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/btnGet"

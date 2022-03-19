@@ -49,4 +49,6 @@ public class Prefs {
         editor.commit();
     }
 
+    public void saveRegisterFragment() {
+    }
 }
